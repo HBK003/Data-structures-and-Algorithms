@@ -27,6 +27,7 @@ int main(void) {
 	    char s[400], stack[400];
 	    int top = -1, i;
 	    scanf("%s", s);
+	   // printf("%s", s);
 	    for(i = 0; s[i] != '\0'; i++) {
 	        if ((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')) {
 	            printf("%c", s[i]);
@@ -35,9 +36,13 @@ int main(void) {
 	            stack[++top] = s[i];
 	        }
 	        else if(s[i] == ')') {
-	            while()
+	            while(stack[top] != '(') {
+	                printf("%c", stack[top]);
+	                top--;
+	            }
+	            top--;
 	        }
-	        else if (top == -1 || getPrecedance(s[i]) > getPrecedance(stack[top])) {
+	        else if (top == -1 || stack[top] == '(' || getPrecedance(s[i]) > getPrecedance(stack[top])) {
 	            stack[++top] = s[i];
 	        }
 	        else {
@@ -53,7 +58,7 @@ int main(void) {
 	            stack[++top] = s[i];
 	        }
 	    }
+	    printf("\n");
 	}
 	return 0;
 }
-
